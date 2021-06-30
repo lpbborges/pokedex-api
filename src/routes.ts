@@ -1,9 +1,9 @@
 import { Router } from "express";
 
+import UserController from "./app/controllers/UserController";
+
 const routes = Router();
 
-routes.use("/", (request, response) => {
-  response.json({ message: "ok" });
-});
+routes.post("/users", UserController.create);
 
 export default routes;
