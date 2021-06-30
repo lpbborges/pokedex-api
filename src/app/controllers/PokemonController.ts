@@ -13,13 +13,21 @@ class Pokemon {
     const { pokemonId } = request.params;
     const { data } = await api.get(`pokemon/${pokemonId}`);
 
-    const { id, order, name, types } = data;
+    const { id, order, name, types, sprites } = data;
 
     const onlyTypeNames = types.map(({ type }) => {
       return type.name;
     });
 
-    return response.json({ id, order, name, types: onlyTypeNames });
+    const imageUrl = sprites.front_default;
+
+    return response.json({
+      id,
+      order,
+      name,
+      image_url: imageUrl,
+      types: onlyTypeNames,
+    });
   }
 }
 
