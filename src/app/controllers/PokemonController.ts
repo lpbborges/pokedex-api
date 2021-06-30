@@ -19,7 +19,8 @@ class Pokemon {
       return type.name;
     });
 
-    const imageUrl = sprites.front_default;
+    const imageUrl =
+      sprites.other["official-artwork"].front_default || sprites.front_default;
 
     return response.json({
       id,
