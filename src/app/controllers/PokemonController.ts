@@ -3,8 +3,14 @@ import { Request, Response } from "express";
 import { api } from "../../services/api";
 
 class Pokemon {
-  async index(_: Request, response: Response) {
-    const { data } = await api.get("pokemon");
+  async index(request: Request, response: Response) {
+    const { limit = 12 } = request.query;
+
+    const { data } = await api.get("pokemon", {
+      params: {
+        limit,
+      },
+    });
 
     return response.json(data);
   }
