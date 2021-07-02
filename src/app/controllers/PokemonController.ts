@@ -4,11 +4,12 @@ import { api } from "../../services/api";
 
 class Pokemon {
   async index(request: Request, response: Response) {
-    const { limit = 12 } = request.query;
+    const { limit, offset = 0 } = request.query;
 
     const { data } = await api.get("pokemon", {
       params: {
         limit,
+        offset,
       },
     });
 
@@ -19,10 +20,17 @@ class Pokemon {
     const { pokemonId } = request.params;
     const { data } = await api.get(`pokemon/${pokemonId}`);
 
-    const { id, order, name, types, sprites } = data;
+    const { id, name, types, sprites, height, weight, abilities } = data;
 
-    const onlyTypeNames = types.map(({ type }) => {
+    const heightInCentimeters = height * 10;
+    const weightInGrams = weight * 100;
+
+    const typeNames = types.map(({ type }) => {
       return type.name;
+    });
+
+    const abilitiesNames = abilities.map(({ ability }) => {
+      return ability.name;
     });
 
     const imageUrl =
@@ -30,10 +38,12 @@ class Pokemon {
 
     return response.json({
       id,
-      order,
       name,
+      height: heightInCentimeters,
+      weight: weightInGrams,
       image_url: imageUrl,
-      types: onlyTypeNames,
+      types: typeNames,
+      abilities: abilitiesNames,
     });
   }
 }
