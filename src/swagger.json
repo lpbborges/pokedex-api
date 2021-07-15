@@ -20,19 +20,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "username": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "username": "username_sample",
-                  "password": "password_sample"
-                }
+                "$ref": "#/definitions/User"
               }
             }
           }
@@ -81,19 +69,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "username": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "username": "username_sample",
-                  "password": "password_sample"
-                }
+                "$ref": "#/definitions/User"
               }
             }
           }
@@ -167,40 +143,56 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "height": {
-                      "type": "number"
-                    },
-                    "weight": {
-                      "type": "number"
-                    },
-                    "image_url": {
-                      "type": "string"
-                    },
-                    "types": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "abilities": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  }
+                  "$ref": "#/definitions/Pokemon"
                 }
               }
             }
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pokemon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "height": {
+          "type": "number"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "abilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
         }
       }
     }
