@@ -91,6 +91,11 @@
         ],
         "summary": "List all pokémons",
         "description": "List all pokémons",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -137,6 +142,22 @@
         ],
         "summary": "List a pokémon by id",
         "description": "List a pokémon by id",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Pokémon id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -194,6 +215,15 @@
         "password": {
           "type": "string"
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
